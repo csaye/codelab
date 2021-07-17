@@ -2,7 +2,7 @@ import styles from './Frame.module.css';
 
 export default function Frame(props) {
   return (
-    <div>
+    <div className={styles.container}>
       <iframe
         srcDoc={props.source}
         title="frame"

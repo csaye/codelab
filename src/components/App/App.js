@@ -1,3 +1,7 @@
+import { useState } from 'react';
+import Editor from '../Editor/Editor.js';
+import Frame from '../Frame/Frame.js';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -12,10 +16,14 @@ if (!firebase.apps.length) {
 }
 
 function App() {
+  const [source, setSource] = useState('');
+
   useAuthState(firebase.auth());
 
   return (
-    <div>
+    <div className={styles.container}>
+      <Editor setSource={setSource} />
+      <Frame source={source} />
     </div>
   );
 }
