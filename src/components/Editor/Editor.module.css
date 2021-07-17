@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+}
+
+.window {
+  width: 100%;
+  min-width: 100px;
+}
+
+.window > h1 {
+  text-align: center;
+  margin: 0;
+}
