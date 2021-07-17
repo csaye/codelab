@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Controlled } from 'react-codemirror2';
 
 import 'codemirror/lib/codemirror.css';
@@ -9,10 +9,25 @@ import 'codemirror/mode/javascript/javascript.js';
 
 import styles from './Editor.module.css';
 
-export default function Editor() {
+const compileDelay = 250;
+
+export default function Editor(props) {
   const [html, setHtml] = useState('');
   const [css, setCss] = useState('');
   const [js, setJs] = useState('');
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      props.setSource(`
+        <html>
+          <body>${html}</body>
+          <style>${css}</style>
+          <script>${js}</script>
+        </html>
+      `);
+    }, compileDelay);
+    return () => clearTimeout(timeout);
+  }, [html, css, js]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
