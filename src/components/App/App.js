@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Header from '../Header/Header.js';
 import Editor from '../Editor/Editor.js';
 import Frame from '../Frame/Frame.js';
 
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div className={styles.container}>
+      <Header />
       <Editor setSource={setSource} />
       <Frame source={source} />
     </div>
